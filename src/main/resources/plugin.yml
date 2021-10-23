@@ -1,0 +1,12 @@
+name: Screen
+version: '${version}'
+main: me.zote.scr.ScreenPlugin
+api-version: 1.17
+prefix: SCR
+authors: [ Zote ]
+description: Displays Gifs ingame
+
+commands:
+  display:
+    description: Main command
+    permission: screen.display

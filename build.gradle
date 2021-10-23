@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+}
+
+group = 'me.zote.scr'
+version = '1.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper:1.17.1-R0.1-SNAPSHOT'
+
+    implementation "net.kyori:adventure-api:4.9.2"
+    implementation 'net.kyori:adventure-text-serializer-legacy:4.9.2'
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    relocate 'net.kyori.adventure', "${project.group}.shade.adventure"
+}
